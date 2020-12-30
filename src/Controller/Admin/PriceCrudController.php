@@ -2,20 +2,14 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\User;
+use App\Entity\Price;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-/**
- * @IsGranted("ROLE_ADMIN", statusCode=404, message="Not found")
- * Class UserCrudController
- * @package App\Controller\Admin
- */
-class UserCrudController extends AbstractCrudController
+class PriceCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return User::class;
+        return Price::class;
     }
 
     /*

@@ -2,6 +2,8 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Image;
+use App\Entity\Price;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -23,18 +25,31 @@ class DashboardController extends AbstractDashboardController
      */
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('admin/dashboard.twig', [
+            'dashboard_controller_filepath' => (new \ReflectionClass(static::class))->getFileName(),
+            'dashboard_controller_class' => (new \ReflectionClass(static::class))->getShortName(),
+        ]);
     }
 
+    /**
+     * @return Dashboard
+     */
     public function configureDashboard(): Dashboard
     {
+        $user = $this->getUser();
         return Dashboard::new()
-            ->setTitle('Www');
+            ->setTitle($user->getUsername());
     }
 
+    /**
+     * @return iterable
+     */
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-         yield MenuItem::linkToCrud('The Label', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
+        yield MenuItem::linkToCrud('Images', 'fas fa-image', Image::class);
+        yield MenuItem::linkToCrud('Price', 'fas fa-money-bill', Price::class);
     }
+
 }
