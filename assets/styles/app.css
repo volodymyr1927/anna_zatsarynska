@@ -934,7 +934,7 @@ body.is-loading #banner > .inner {
     min-height: 100vh;
     height: 100vh;
     position: relative;
-    background: #000 ;
+    background: #000;
     background-image: url(../../public/banner/main.jpg);
     background-size: cover;
     background-attachment: fixed;
