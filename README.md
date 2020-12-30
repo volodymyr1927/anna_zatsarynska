@@ -8,3 +8,6 @@
 ###1. `npm run dev` - compile assets once 
 ###2. `npm run watch` - recompile assets automatically when files change
 ###3. `npm run build` - create a production build
+
+#Host
+###Localhost - `http://127.0.0.1:8081`
