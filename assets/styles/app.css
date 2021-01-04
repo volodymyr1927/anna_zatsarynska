@@ -950,3 +950,25 @@ body.is-loading #banner > .inner {
     }
 
 }
+
+/* Gallery */
+
+.zoomwall {
+    padding: 4vh 0;
+}
+
+.zoomwall img {
+    width: 50%;
+    height: auto !important;
+    transform-origin: 0% 0%;
+}
+
+
+@media screen and (max-width: 736px) {
+
+    .zoomwall img {
+        width: 100%;
+        height: auto;
+        transform-origin: 0% 0%;
+    }
+}

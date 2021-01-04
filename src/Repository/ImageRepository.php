@@ -14,8 +14,8 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ImageRepository extends ServiceEntityRepository
 {
-    public const UPLOAD_DIR = 'public/images/';
-    public const BASE_PATH = 'images/';
+    public const UPLOAD_DIR = 'public/images/thumbs/';
+    public const BASE_PATH = 'images/thumbs/';
 
     public function __construct(ManagerRegistry $registry)
     {

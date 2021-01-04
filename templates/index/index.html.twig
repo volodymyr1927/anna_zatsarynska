@@ -35,8 +35,9 @@
             <!-- Gallery -->
             <section id="galleries">
                 <div id="gallery" class="zoomwall">
-                    <img src="{{ asset('images/thumbs/01.jpg') }}" data-highres="{{ asset('images/thumbs/01.jpg') }}"/>
-                    <img src="{{ asset('images/thumbs/01.jpg') }}" data-highres="{{ asset('images/thumbs/01.jpg') }}"/>
+                    {% for thumb in thumbs %}
+                        <img srcset="{{ asset('images/thumbs/' ~ thumb.image) }} 250w, {{ asset('images/thumbs/' ~ thumb.image) }} 1280w" sizes="100vw" src="{{ asset('images/thumbs/' ~ thumb.image) }}" data-sizes="(max-width: 1280px) 250px, 1280px">
+                    {% endfor %}
                 </div>
             </section>
 
