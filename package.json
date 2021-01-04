@@ -22,7 +22,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "yarn": "^1.22.10"
+        "yarn": "^1.22.10",
+        "zoomwall.js": "1.2.0"
     },
     "browserslist": [
         "> 0.5%",

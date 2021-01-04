@@ -1,9 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Anna Zatsarynska{% endblock %}
-{% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
-{% endblock %}
 
 {% block body %}
 
@@ -37,19 +34,9 @@
 
             <!-- Gallery -->
             <section id="galleries">
-
-                <!-- Photo Galleries -->
-                <div class="gallery">
-                    <div class="content">
-                        <div class="media">
-                            <a href="{{ asset('images/01.jpg')  }}"><img src=" {{ asset('images/thumbs/01.jpg')  }}" alt="" title="" /></a>
-                        </div>
-
-                    </div>
-                    {# Temporary commented #}
-{#                    <footer>#}
-{#                        <button href="{{ path('full_gallery') }}" class="button big">Full Gallery</button>#}
-{#                    </footer>#}
+                <div id="gallery" class="zoomwall">
+                    <img src="{{ asset('images/thumbs/01.jpg') }}" data-highres="{{ asset('images/thumbs/01.jpg') }}"/>
+                    <img src="{{ asset('images/thumbs/01.jpg') }}" data-highres="{{ asset('images/thumbs/01.jpg') }}"/>
                 </div>
             </section>
 
@@ -61,5 +48,4 @@
             </footer>
         </section>
     </div>
-
 {% endblock %}
