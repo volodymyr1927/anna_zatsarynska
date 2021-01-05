@@ -1,5 +1,8 @@
 framework:
     cache:
+        app: cache.adapter.memcached
+        default_memcached_provider: 'memcached.provider'
+
         # Unique name of your app: used to compute stable namespaces for cache keys.
         #prefix_seed: your_vendor_name/app_name
 
@@ -17,3 +20,16 @@ framework:
         # Namespaced pools use the above "app" backend by default
         #pools:
             #my.dedicated.cache: null
+
+services:
+    memcached.provider:
+        class: Memcached
+        factory: Symfony\Component\Cache\Adapter\MemcachedAdapter::createConnection
+        arguments: [ '%env(MEMCACHED_HOST)%', { distribution: 'consistent',
+                                                compression: true,
+                                                prefix_key: 'az.',
+                                                connect_timeout: 200,
+                                                no_block: true,
+                                                remove_failed_servers: true,
+                                                server_failure_limit: 2,
+                                                retry_timeout: 1 }]
