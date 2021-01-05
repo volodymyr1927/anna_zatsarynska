@@ -7,6 +7,7 @@ use App\Repository\ImageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -38,10 +39,14 @@ class ImageCrudController extends AbstractCrudController
        $imageField->setUploadedFileNamePattern(function(UploadedFile $file) {
          return sprintf('upload_%d_%s.%s', random_int(1, 999), $file->getFilename(), $file->guessExtension());
        });
+
+        $widthField = ChoiceField::new('width','Width');
+        $widthField->setChoices(['50' => '50', '100' => '100']);
+
         return [
             $imageField,
             BooleanField::new('active', 'Active'),
-
+            $widthField
         ];
     }
 

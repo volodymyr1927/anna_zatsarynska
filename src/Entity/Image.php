@@ -37,6 +37,10 @@ class Image
      */
     private $active;
 
+    /**
+     * @ORM\Column(name="width", type="string", length=25, nullable=false, columnDefinition="ENUM('50','100')")
+     */
+    private $width = '50';
 
     /**
      * @var \DateTime
@@ -105,6 +109,22 @@ class Image
     }
 
     /**
+     * @return mixed
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * @param mixed $width
+     */
+    public function setWidth($width): void
+    {
+        $this->width = $width;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getCreatedAt(): ?\DateTime
@@ -135,8 +155,6 @@ class Image
     {
         $this->updatedAt = $updatedAt;
     }
-
-
 
 
 }

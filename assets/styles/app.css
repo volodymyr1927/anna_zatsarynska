@@ -50,6 +50,34 @@ body {
     box-sizing: border-box;
 }
 
+@media screen and (max-width: 480px) {
+
+    *, *:before, *:after {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+}
+
+@media screen and (max-width: 736px) {
+
+    *, *:before, *:after {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+}
+
+@media screen and (max-width: 980px) {
+
+    *, *:before, *:after {
+        -moz-box-sizing: content-box;
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+}
+
+
 /* Basic */
 
 @-ms-viewport {
@@ -871,6 +899,10 @@ body.is-loading #banner > .inner {
         font-size: 1.25em;
     }
 
+    #banner a {
+        font-size: 1.25em;
+    }
+
 }
 
 
@@ -901,12 +933,14 @@ body.is-loading #banner > .inner {
 #header div p {
     padding: 1vh 0 1vh 0;
     margin: 0;
+    font-size: 1.5em;
 }
 
 #header div a:hover {
     text-decoration: none;
     color: #878f97;
 }
+
 
 /* Banner wrapper */
 
@@ -958,9 +992,7 @@ body.is-loading #banner > .inner {
 }
 
 .zoomwall img {
-    width: 50%;
-    height: auto !important;
-    transform-origin: 0% 0%;
+    transform-origin: 0;
 }
 
 

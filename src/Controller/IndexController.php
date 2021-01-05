@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\ImageRepository;
+use App\Service\ImageSortableService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,17 +15,17 @@ class IndexController extends AbstractController
 {
 
     /**
-     * @var ImageRepository
+     * @var ImageSortableService
      */
-    private $imageRepository;
+    private $imageService;
 
     /**
      * IndexController constructor.
-     * @param ImageRepository $imageRepository
+     * @param ImageSortableService $imageService
      */
-    public function __construct(ImageRepository $imageRepository)
+    public function __construct(ImageSortableService $imageService)
     {
-        $this->imageRepository = $imageRepository;
+        $this->imageService = $imageService;
     }
 
     /**
@@ -45,6 +45,6 @@ class IndexController extends AbstractController
      */
     private function getAllActiveThumbs(): array
     {
-        return $this->imageRepository->findBy(['active' => true]);
+        return $this->imageService->getSortedImages();
     }
 }

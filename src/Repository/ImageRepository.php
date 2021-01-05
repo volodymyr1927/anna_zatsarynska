@@ -17,9 +17,22 @@ class ImageRepository extends ServiceEntityRepository
     public const UPLOAD_DIR = 'public/images/thumbs/';
     public const BASE_PATH = 'images/thumbs/';
 
+    const FULL_WIDTH = 100;
+    const HALF_WIDTH = 50;
+
+    public static $widths = [50, 100];
+
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Image::class);
+    }
+
+    /**
+     * @return Image[]
+     */
+    public function findByActive(): array
+    {
+        return $this->findBy(['active' => true]);
     }
 
     // /**
@@ -50,4 +63,5 @@ class ImageRepository extends ServiceEntityRepository
         ;
     }
     */
+
 }
