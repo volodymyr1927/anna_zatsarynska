@@ -6,13 +6,15 @@ namespace App\Service;
 
 use App\Entity\Image;
 use App\Repository\ImageRepository;
-use Symfony\Contracts\Cache\CacheInterface;
-use Symfony\Contracts\Cache\ItemInterface;
 
+/**
+ * Class ImageSortableService
+ * @package App\Service
+ */
 class ImageSortableService
 {
 
-    private const CACHE_KEY = 'sorted_image_v1_';
+    private const CACHE_KEY = 'sorted_image_v1';
     private const CACHE_TTL = 1800; // 30 minutes
 
     /**
@@ -21,25 +23,24 @@ class ImageSortableService
     private $imageRepository;
 
     /**
-     * @var CacheInterface
+     * @var CacheService
      */
-    private $cache;
+    private $cacheService;
 
     /**
      * ImageSortableService constructor.
      * @param ImageRepository $imageRepository
-     * @param CacheInterface $cache
+     * @param CacheService $cacheService
      */
-    public function __construct(ImageRepository $imageRepository, CacheInterface $cache)
+    public function __construct(ImageRepository $imageRepository, CacheService $cacheService)
     {
         $this->imageRepository = $imageRepository;
-        $this->cache = $cache;
+        $this->cacheService = $cacheService;
     }
 
 
     /**
      * @return array
-     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function getSortedImages(): array
     {
@@ -57,19 +58,18 @@ class ImageSortableService
     /**
      * @param array $images
      * @return array
-     * @throws \Psr\Cache\InvalidArgumentException
      */
     private function sortImagesByWidth(array $images): array
     {
-        $item = $this->getCacheItem();
+        $item = $this->cacheService->getItem(self::CACHE_KEY);
 
-        if ($item->get()) {
+        if ($result = $this->cacheService->get($item)) {
 
-            return $item->get();
+            return $result;
         }
 
         $result = [];
-        $split = $this->splitValueByWeight($images);
+        $split = $this->splitValueByWidth($images);
 
         if (!empty($split[ImageRepository::FULL_WIDTH])) {
             $k = 0;
@@ -89,7 +89,7 @@ class ImageSortableService
             }
         }
         ksort($result);
-        $this->setCache($item, $result);
+        $this->cacheService->set($item, self::CACHE_TTL, $result);
 
         return $result;
     }
@@ -98,7 +98,7 @@ class ImageSortableService
      * @param array $images
      * @return array
      */
-    private function splitValueByWeight(array $images): array
+    private function splitValueByWidth(array $images): array
     {
         $splits = [];
         foreach (ImageRepository::$widths as $width) {
@@ -116,27 +116,4 @@ class ImageSortableService
         return $splits;
     }
 
-
-    /**
-     * @return ItemInterface
-     * @throws \Psr\Cache\InvalidArgumentException
-     */
-    private function getCacheItem(): ItemInterface
-    {
-        return $this->cache->getItem(self::CACHE_KEY);
-
-    }
-
-    /**
-     * @param ItemInterface $item
-     * @param $value
-     * @return bool
-     */
-    private function setCache(ItemInterface $item, $value): bool
-    {
-       $item->expiresAfter(self::CACHE_TTL);
-       $item->set($value);
-       return $this->cache->save($item);
-
-    }
 }
