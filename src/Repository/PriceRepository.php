@@ -19,6 +19,14 @@ class PriceRepository extends ServiceEntityRepository
         parent::__construct($registry, Price::class);
     }
 
+    /**
+     * @return Price[]
+     */
+    public function findByActive(): array
+    {
+        return $this->findBy(['active' => true]);
+    }
+
     // /**
     //  * @return Price[] Returns an array of Price objects
     //  */

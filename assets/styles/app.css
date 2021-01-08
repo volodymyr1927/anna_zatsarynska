@@ -352,7 +352,7 @@ button, .button {
 button:hover,
 .button:hover {
     color: #FFF;
-    background: #878f97;
+    background: rgba(39,40,44,.2);
 }
 
 
@@ -913,6 +913,10 @@ body.is-loading #banner > .inner {
     width: 100%;
 }
 
+#main-price {
+    width: 100%;
+}
+
 /* Header */
 
 #header {
@@ -953,15 +957,6 @@ body.is-loading #banner > .inner {
 }
 
 
-@media screen and (max-width: 980px) {
-
-
-}
-
-@media screen and (max-width: 736px) {
-
-}
-
 /* Footer */
 
 #footer {
@@ -1001,6 +996,117 @@ body.is-loading #banner > .inner {
     .zoomwall img {
         width: 100%;
         height: auto;
-        transform-origin: 0% 0%;
+        transform-origin: 0;
     }
 }
+
+/* Price */
+
+#head-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#head-link h2 {
+    padding: 3vh;
+}
+
+@media screen and (max-width: 736px) {
+    #head-link {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    #head-link {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    #head-link {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+}
+
+#price-content {
+    height: 85%;
+    font-size: 1.25em;
+}
+
+#price-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 4vh;
+}
+
+
+#price-content-wrapper {
+    margin: 4vh;
+    border: solid rgba(39,40,44,.2) 0.1vh;
+    padding: 2vh;
+    flex-basis: 27%;
+}
+
+
+#price-header-wrapper div a:hover {
+    text-decoration: none;
+    color: #878f97;
+}
+
+#price-content-wrapper #content ul {
+    list-style-type: square;
+}
+
+@media screen and (max-width: 736px) {
+
+    #price-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: nowrap;
+        height: 90%;
+    }
+
+    #price-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-basis: 100%;
+    }
+}
+
+@media screen and (max-width: 980px) {
+
+    #price-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+        height: 90%;
+    }
+
+    #price-content-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 100%;
+    }
+}
+
+
+
+
+

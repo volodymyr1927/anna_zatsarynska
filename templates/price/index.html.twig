@@ -5,20 +5,37 @@
     <div class="page-wrap">
 
         <!-- Main -->
-        <section id="main">
-          <header id="header">
+        <section id="main-price">
 
-          </header>
+            <!-- Header -->
+            <section id="price-header">
+                <header id="price-header-wrapper">
+                    <div id="head-link">
+                        <h2><a href="{{ asset('/') }}">Anna Zatsarinskaya</a></h2>
+                    </div>
+                </header>
+            </section>
 
-            <section id="content">
+            <!-- Content -->
+            <section id="price-content">
+                {% for price in prices %}
+                    <div id="price-content-wrapper">
+                        <div id="title">
+                            <h3>{{ price.contentTitle |raw }}</h3>
+                        </div>
+                        <div id="content">
+                            {{ price.content |raw }}
+                        </div>
+                    </div>
 
+                {% endfor %}
             </section>
 
 
             <!-- Footer -->
             <footer id="footer">
                 <div class="copyright">
-                    &copy; Anna Zatsarynska
+                    &copy; Anna Zatsarinskaya
                 </div>
             </footer>
         </section>
