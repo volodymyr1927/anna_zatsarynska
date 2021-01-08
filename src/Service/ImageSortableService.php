@@ -14,7 +14,7 @@ use App\Repository\ImageRepository;
 class ImageSortableService
 {
 
-    private const CACHE_KEY = 'sorted_image_v1';
+    public const CACHE_KEY = 'sorted_image_v1';
     private const CACHE_TTL = 1800; // 30 minutes
 
     /**

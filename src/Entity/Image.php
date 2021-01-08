@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @ORM\Table(name="image")
  */
 class Image
@@ -41,6 +41,12 @@ class Image
      * @ORM\Column(name="width", type="string", length=25, nullable=false, columnDefinition="ENUM('50','100')")
      */
     private $width = '50';
+
+
+    /**
+     * @ORM\Column(name="description", type="string", nullable=true, length=255, options={"default"=""})
+     */
+    private $description;
 
     /**
      * @var \DateTime
@@ -123,6 +129,23 @@ class Image
     {
         $this->width = $width;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
+
 
     /**
      * @return \DateTime

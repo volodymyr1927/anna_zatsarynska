@@ -60,4 +60,15 @@ class CacheService
         return $item->get();
     }
 
+
+    /**
+     * @param string $key
+     * @return bool
+     * @throws \Psr\Cache\InvalidArgumentException
+     */
+    public function delete(string $key): bool
+    {
+       return $this->cache->delete($key);
+    }
+
 }

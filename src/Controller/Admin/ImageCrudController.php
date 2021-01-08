@@ -4,11 +4,14 @@ namespace App\Controller\Admin;
 
 use App\Entity\Image;
 use App\Repository\ImageRepository;
+use App\Service\CacheService;
+use App\Service\ImageSortableService;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -19,6 +22,21 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class ImageCrudController extends AbstractCrudController
 {
+
+    /**
+     * @var CacheService
+     */
+    private $cacheService;
+
+    /**
+     * ImageCrudController constructor.
+     * @param CacheService $cacheService
+     */
+    public function __construct(CacheService $cacheService)
+    {
+        $this->cacheService = $cacheService;
+    }
+
     /**
      * @return string
      */
@@ -43,10 +61,14 @@ class ImageCrudController extends AbstractCrudController
         $widthField = ChoiceField::new('width','Width');
         $widthField->setChoices(['50' => '50', '100' => '100']);
 
+        $textField = TextField::new('description', 'Description');
+        $textField->setRequired(false);
+
         return [
             $imageField,
             BooleanField::new('active', 'Active'),
-            $widthField
+            $widthField,
+            $textField,
         ];
     }
 
@@ -54,7 +76,7 @@ class ImageCrudController extends AbstractCrudController
     /**
      * @param EntityManagerInterface $entityManager
      * @param $entityInstance
-     * @throws \Exception
+     * @throws \Psr\Cache\InvalidArgumentException
      */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
@@ -65,6 +87,17 @@ class ImageCrudController extends AbstractCrudController
         $entityInstance->setCreatedAt(new \DateTime());
         $entityInstance->setUpdatedAt(new \DateTime());
         parent::persistEntity($entityManager, $entityInstance);
+
+        $this->clearImageCache();
+    }
+
+    /**
+     * @return bool
+     * @throws \Psr\Cache\InvalidArgumentException
+     */
+    private function clearImageCache(): bool
+    {
+      return  $this->cacheService->delete(ImageSortableService::CACHE_KEY);
     }
 
 

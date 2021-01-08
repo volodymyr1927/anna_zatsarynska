@@ -38,7 +38,7 @@
                     {% for thumb in thumbs %}
                         <img srcset="{{ asset('images/thumbs/' ~ thumb.image) }} 250w, {{ asset('images/thumbs/' ~ thumb.image) }} 1280w"
                              sizes="100vw" src="{{ asset('images/thumbs/' ~ thumb.image) }}" data-sizes="(max-width: 1280px) 250px, 1280px"
-                            style="width: {{ thumb.width }}%; height: auto;">
+                            style="width: {{ thumb.width }}%; height: auto;" alt="{{ thumb.description }}">
                     {% endfor %}
                 </div>
             </section>
