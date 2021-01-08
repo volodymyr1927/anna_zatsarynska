@@ -42,7 +42,6 @@ class Image
      */
     private $width = '50';
 
-
     /**
      * @ORM\Column(name="description", type="string", nullable=true, length=255, options={"default"=""})
      */
