@@ -915,6 +915,7 @@ body.is-loading #banner > .inner {
 
 #main-price {
     width: 100%;
+    background: #f1f1f1;
 }
 
 /* Header */
