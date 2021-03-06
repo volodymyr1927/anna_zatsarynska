@@ -1,0 +1,77 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.1"
+
+networks:
+  custom_network:
+    external:
+      name: network_for_few_containers
+
+services:
+
+    memcached:
+      image: memcached:alpine
+      container_name: anna-zatsarynska-memcached
+      hostname: app-memcached
+      ports:
+        - '11211:11211'
+      environment:
+        - MEMCACHED_CACHE_SIZE=1024
+        - MEMCACHED_CONN_LIMIT=1024
+      networks:
+        custom_network:
+          aliases:
+            - app-memcached
+
+    mysql:
+      build:
+        context: .
+        dockerfile: phpdocker/mysql/Dockerfile
+      image: mysql:5.7
+      container_name: anna-zatsarynska-mysql
+      hostname: app-mysql
+      working_dir: /anna_zatsarynska
+      volumes:
+        - ./phpdocker/mysql/data:/var/lib/mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=password
+        - MYSQL_DATABASE=notify
+        - MYSQL_USER=anna
+        - MYSQL_PASSWORD=password
+      ports:
+        - "3307:3306"
+      networks:
+        custom_network:
+          aliases:
+            - app-mysql
+
+    nginx:
+      image: nginx:alpine
+      container_name: anna-zatsarynska-nginx
+      working_dir: /var/www
+      volumes:
+          - ./anna_zatsarynska:/var/www
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "8081:80"
+      networks:
+        custom_network:
+          aliases:
+            - app-nginx
+
+    php-fpm:
+      build:
+        context: .
+        dockerfile: phpdocker/php-fpm/Dockerfile
+      container_name: php-fpm
+      hostname: php-fpm
+      working_dir: /var/www
+      volumes:
+        - ./anna_zatsarynska:/var/www
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+      networks:
+        custom_network:
+          aliases:
+            - php-fpm
+
