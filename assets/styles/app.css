@@ -991,6 +991,16 @@ body.is-loading #banner > .inner {
     transform-origin: 0;
 }
 
+.thumb-bg {
+    width: 92% !important;
+    height: auto;
+    margin: .5% 0 .5% 4%;
+}
+.thumb-sm {
+    width: 44% !important;
+    height: auto;
+    margin: .5% 0 .5% 4%;
+}
 
 @media screen and (max-width: 736px) {
 
