@@ -809,7 +809,6 @@ body.is-loading #banner > .inner {
     -ms-justify-content: center;
     justify-content: center;
     min-height: 100vh;
-    height: 100vh;
     position: relative;
     background: #000;
     background-image: url(../../public/banner/main.jpg);
@@ -888,19 +887,29 @@ body.is-loading #banner > .inner {
 @media screen and (max-width: 736px) {
 
     #banner {
+        min-height: 10vh;
         background-attachment: scroll;
+        padding: 1em 0 0 0;
+    }
+
+    #header div p {
+        padding: 0 !important;
+    }
+
+    #banner .inner {
+        margin: 14vh 0;
     }
 
     #banner h1 {
-        font-size: 2.25em;
+        font-size: 1.5em;
     }
 
     #banner p {
-        font-size: 1.25em;
+        font-size: 0.75em;
     }
 
     #banner a {
-        font-size: 1.25em;
+        font-size: 0.75em;
     }
 
 }
