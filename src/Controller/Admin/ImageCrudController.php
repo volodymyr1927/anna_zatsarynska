@@ -62,8 +62,8 @@ class ImageCrudController extends AbstractCrudController
         $widthField->setChoices(['50' => '50', '100' => '100']);
         $widthField->setRequired(true);
 
-        $wageField = IntegerField::new('wage', 'Wage');
-        $wageField->setRequired(true);
+        $weightField = IntegerField::new('weight', 'Weight');
+        $weightField->setRequired(true);
 
         $textField = TextField::new('description', 'Description');
         $textField->setRequired(false);
@@ -72,7 +72,7 @@ class ImageCrudController extends AbstractCrudController
             $imageField,
             BooleanField::new('active', 'Active'),
             $widthField,
-            $wageField,
+            $weightField,
             $textField,
         ];
     }
