@@ -51,6 +51,4 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Images', 'fas fa-image', Image::class);
         yield MenuItem::linkToCrud('Price', 'fas fa-money-bill', Price::class);
     }
-
-
 }

@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -22,7 +23,6 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class ImageCrudController extends AbstractCrudController
 {
-
     /**
      * @var CacheService
      */
@@ -60,6 +60,10 @@ class ImageCrudController extends AbstractCrudController
 
         $widthField = ChoiceField::new('width','Width');
         $widthField->setChoices(['50' => '50', '100' => '100']);
+        $widthField->setRequired(true);
+
+        $wageField = IntegerField::new('wage', 'Wage');
+        $wageField->setRequired(true);
 
         $textField = TextField::new('description', 'Description');
         $textField->setRequired(false);
@@ -68,10 +72,10 @@ class ImageCrudController extends AbstractCrudController
             $imageField,
             BooleanField::new('active', 'Active'),
             $widthField,
+            $wageField,
             $textField,
         ];
     }
-
 
     /**
      * @param EntityManagerInterface $entityManager
@@ -88,17 +92,6 @@ class ImageCrudController extends AbstractCrudController
         $entityInstance->setUpdatedAt(new \DateTime());
         parent::persistEntity($entityManager, $entityInstance);
 
-        $this->clearImageCache();
+        $this->cacheService->delete(ImageSortableService::CACHE_KEY);
     }
-
-    /**
-     * @return bool
-     * @throws \Psr\Cache\InvalidArgumentException
-     */
-    private function clearImageCache(): bool
-    {
-      return  $this->cacheService->delete(ImageSortableService::CACHE_KEY);
-    }
-
-
 }

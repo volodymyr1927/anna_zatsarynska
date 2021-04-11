@@ -4,6 +4,8 @@
 namespace App\Service;
 
 
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 
@@ -18,13 +20,17 @@ class CacheService
      */
     private $cache;
 
+    private $cacheDir;
+
     /**
      * CacheService constructor.
      * @param CacheInterface $cache
+     * @param ParameterBagInterface $parameterBag
      */
-    public function __construct(CacheInterface $cache)
+    public function __construct(CacheInterface $cache, ParameterBagInterface $parameterBag)
     {
         $this->cache = $cache;
+        $this->cacheDir = $parameterBag->get('kernel.cache_dir');
     }
 
 
@@ -71,4 +77,20 @@ class CacheService
        return $this->cache->delete($key);
     }
 
+    public function cacheClearAndWarmup(): bool
+    {
+        $clear = sprintf('php %s/../../bin/console cache:clear', __DIR__);
+        $warmup = sprintf('php %s/../../bin/console cache:warmup', __DIR__);
+
+        exec($clear);
+        exec($warmup);
+
+        return true;
+    }
+
+    public function clearFilesystemCache()
+    {
+        $fs = new Filesystem();
+        $fs->remove($this->cacheDir);
+    }
 }

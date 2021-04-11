@@ -48,12 +48,37 @@ class ImageSortableService
 
         if (!empty($images)) {
 
-            return $this->sortImagesByWidth($images);
+            return $this->sortByWidthAndWage($images);
         }
 
         return $images;
     }
 
+
+    private function sortByWidthAndWage(array $images): array
+    {
+        $item = $this->cacheService->getItem(self::CACHE_KEY);
+        if ($result = $this->cacheService->get($item)) {
+
+            return $result;
+        }
+
+        $result = $this->sortImagesByWidth($images);
+        if (empty($result)) {
+
+            return  [];
+        }
+
+        $result = $this->sortImagesByWage($result);
+        if (empty($result)) {
+
+            return  [];
+        }
+
+        $this->cacheService->set($item, self::CACHE_TTL, $result);
+
+        return $result;
+    }
 
     /**
      * @param array $images
@@ -61,13 +86,6 @@ class ImageSortableService
      */
     private function sortImagesByWidth(array $images): array
     {
-        $item = $this->cacheService->getItem(self::CACHE_KEY);
-
-        if ($result = $this->cacheService->get($item)) {
-
-            return $result;
-        }
-
         $result = [];
         $split = $this->splitValueByWidth($images);
 
@@ -89,9 +107,22 @@ class ImageSortableService
             }
         }
         ksort($result);
-        $this->cacheService->set($item, self::CACHE_TTL, $result);
 
         return $result;
+    }
+
+    private function sortImagesByWage(array $images): array
+    {
+        uasort($images,[$this,'comparison']);
+
+        return $images;
+    }
+
+    function comparison(Image $a, Image $b) {
+        if ($a->getWeight() == $b->getWeight()) {
+            return 0;
+        }
+        return ($a->getWeight() < $b->getWeight()) ? -1 : 1;
     }
 
     /**
@@ -115,5 +146,4 @@ class ImageSortableService
 
         return $splits;
     }
-
 }

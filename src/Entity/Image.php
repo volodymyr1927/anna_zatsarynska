@@ -43,6 +43,11 @@ class Image
     private $width = '50';
 
     /**
+     * @ORM\Column(name="wage", type="integer", length=11, nullable=false,options={"default"=0})
+     */
+    private $weight = 0;
+
+    /**
      * @ORM\Column(name="description", type="string", nullable=true, length=255, options={"default"=""})
      */
     private $description;
@@ -130,6 +135,22 @@ class Image
     }
 
     /**
+     * @return int
+     */
+    public function getWeight(): int
+    {
+        return $this->weight;
+    }
+
+    /**
+     * @param int $weight
+     */
+    public function setWeight(int $weight): void
+    {
+        $this->weight = $weight;
+    }
+
+    /**
      * @return mixed
      */
     public function getDescription()
@@ -177,6 +198,4 @@ class Image
     {
         $this->updatedAt = $updatedAt;
     }
-
-
 }
