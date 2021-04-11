@@ -43,7 +43,7 @@ class Image
     private $width = '50';
 
     /**
-     * @ORM\Column(name="wage", type="integer", length=11, nullable=false,options={"default"=0})
+     * @ORM\Column(name="weight", type="integer", length=11, nullable=false,options={"default"=0})
      */
     private $weight = 0;
 
