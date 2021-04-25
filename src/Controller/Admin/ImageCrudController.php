@@ -57,6 +57,7 @@ class ImageCrudController extends AbstractCrudController
        $imageField->setUploadedFileNamePattern(function(UploadedFile $file) {
          return sprintf('upload_%d_%s.%s', random_int(1, 999), $file->getFilename(), $file->guessExtension());
        });
+       $imageField->setRequired(false);
 
         $widthField = ChoiceField::new('width','Width');
         $widthField->setChoices(['50' => '50', '100' => '100']);
