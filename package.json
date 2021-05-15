@@ -22,6 +22,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "viewerjs": "^1.9.0",
         "yarn": "^1.22.10",
         "zoomwall.js": "1.2.0"
     },

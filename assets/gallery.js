@@ -1,5 +1,6 @@
-import  {zoomwall} from 'zoomwall.js';
+import Viewer from 'viewerjs'
 
-window.onload = function () {
-    zoomwall.create(document.getElementById("gallery"), true);
-};
+const gallery = new Viewer(document.getElementById('gallery'), {
+    'button': false
+});
+

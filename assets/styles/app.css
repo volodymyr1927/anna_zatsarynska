@@ -1011,6 +1011,10 @@ body.is-loading #banner > .inner {
     margin: .5% 0 .5% 4%;
 }
 
+.viewer-backdrop {
+    background-color: rgba(255, 255, 255, 255);
+}
+
 @media screen and (max-width: 736px) {
 
     .zoomwall img {
