@@ -4,7 +4,6 @@
 /.env.local.php
 /.env.*.local
 /.env
-/composer.lock
 /symfony.lock
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
@@ -21,4 +20,5 @@ yarn-error.log
 /package-lock.json
 /.idea
 robots.txt
+/phpdocker/mysql/data/*
 ###< symfony/webpack-encore-bundle ###
