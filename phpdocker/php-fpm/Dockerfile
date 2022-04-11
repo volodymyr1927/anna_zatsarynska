@@ -7,11 +7,14 @@ ARG DEBIAN_FRONTEND=noninteractive
 # Install selected extensions and other stuff
 RUN apt-get update
 RUN apt-get -y install \
-      php8.1-memcached \
+      php-memcached \
       php8.1-mysql \
-      php8.1-xdebug \
-      php8.1-xml \
-      php8.1-dom \
+      php8.0-mysql \
+      php-xdebug \
+      php-xml \
+      php-gd \
+      php-curl \
+      php-mbstring \
       php-psr \
       ssh \
       git \
