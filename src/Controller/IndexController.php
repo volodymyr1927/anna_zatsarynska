@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
+use App\Entity\Image;
 use App\Service\ImageSortableService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,18 +14,10 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class IndexController
  * @package App\Controller
  */
-class IndexController extends AbstractController
+final class IndexController extends AbstractController
 {
+    private ImageSortableService $imageService;
 
-    /**
-     * @var ImageSortableService
-     */
-    private $imageService;
-
-    /**
-     * IndexController constructor.
-     * @param ImageSortableService $imageService
-     */
     public function __construct(ImageSortableService $imageService)
     {
         $this->imageService = $imageService;
@@ -41,7 +36,7 @@ class IndexController extends AbstractController
     }
 
     /**
-     * @return \App\Entity\Image[]
+     * @return Image[]
      */
     private function getAllActiveThumbs(): array
     {

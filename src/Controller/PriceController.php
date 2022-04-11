@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Repository\PriceRepository;
@@ -11,17 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class PriceController
  * @package App\Controller
  */
-class PriceController extends AbstractController
+final class PriceController extends AbstractController
 {
-    /**
-     * @var PriceRepository
-     */
-    private $priceRepository;
+    private PriceRepository $priceRepository;
 
-    /**
-     * PriceController constructor.
-     * @param PriceRepository $priceRepository
-     */
     public function __construct(PriceRepository $priceRepository)
     {
         $this->priceRepository = $priceRepository;

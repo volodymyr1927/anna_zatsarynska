@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\Price;
@@ -8,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use RuntimeException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
@@ -16,20 +19,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  * Class PriceCrudController
  * @package App\Controller\Admin
  */
-class PriceCrudController extends AbstractCrudController
+final class PriceCrudController extends AbstractCrudController
 {
-    /**
-     * @return string
-     */
     public static function getEntityFqcn(): string
     {
         return Price::class;
     }
 
-    /**
-     * @param string $pageName
-     * @return iterable
-     */
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -39,16 +35,10 @@ class PriceCrudController extends AbstractCrudController
         ];
     }
 
-
-    /**
-     * @param EntityManagerInterface $entityManager
-     * @param $entityInstance
-     * @throws \Exception
-     */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if ( !($entityInstance instanceof Price) ) {
-            throw new \Exception('Wrong entity type');
+            throw new RuntimeException('Wrong entity type');
         }
 
         $entityInstance->setCreatedAt(new \DateTime());

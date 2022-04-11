@@ -1,11 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\Image;
 use App\Repository\ImageRepository;
 use App\Service\CacheService;
 use App\Service\ImageSortableService;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
@@ -13,6 +16,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Psr\Cache\InvalidArgumentException;
+use RuntimeException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -21,41 +26,33 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  * Class ImageCrudController
  * @package App\Controller\Admin
  */
-class ImageCrudController extends AbstractCrudController
+final class ImageCrudController extends AbstractCrudController
 {
-    /**
-     * @var CacheService
-     */
-    private $cacheService;
+    private CacheService $cacheService;
 
-    /**
-     * ImageCrudController constructor.
-     * @param CacheService $cacheService
-     */
     public function __construct(CacheService $cacheService)
     {
         $this->cacheService = $cacheService;
     }
 
-    /**
-     * @return string
-     */
     public static function getEntityFqcn(): string
     {
         return Image::class;
     }
 
-    /**
-     * @param string $pageName
-     * @return iterable
-     */
     public function configureFields(string $pageName): iterable
     {
        $imageField = ImageField::new('image','Image');
        $imageField->setUploadDir(ImageRepository::UPLOAD_DIR);
        $imageField->setBasePath(ImageRepository::BASE_PATH);
        $imageField->setUploadedFileNamePattern(function(UploadedFile $file) {
-         return sprintf('upload_%d_%s.%s', random_int(1, 999), $file->getFilename(), $file->guessExtension());
+
+         return sprintf(
+             'upload_%d_%s.%s',
+             random_int(1, 999),
+             $file->getFilename(),
+             $file->guessExtension()
+         );
        });
        $imageField->setRequired(false);
 
@@ -79,18 +76,16 @@ class ImageCrudController extends AbstractCrudController
     }
 
     /**
-     * @param EntityManagerInterface $entityManager
-     * @param $entityInstance
-     * @throws \Psr\Cache\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if ( !($entityInstance instanceof Image) ) {
-            throw new \Exception('Wrong entity type');
+            throw new RuntimeException('Wrong entity type');
         }
         $entityInstance->setNameCrc32(crc32($entityInstance->getImage()));
-        $entityInstance->setCreatedAt(new \DateTime());
-        $entityInstance->setUpdatedAt(new \DateTime());
+        $entityInstance->setCreatedAt(new DateTime());
+        $entityInstance->setUpdatedAt(new DateTime());
         parent::persistEntity($entityManager, $entityInstance);
 
         $this->cacheService->delete(ImageSortableService::CACHE_KEY);

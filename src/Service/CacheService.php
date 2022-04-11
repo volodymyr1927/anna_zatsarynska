@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Service;
 
 
+use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Contracts\Cache\CacheInterface;
@@ -13,42 +15,23 @@ use Symfony\Contracts\Cache\ItemInterface;
  * Class CacheService
  * @package App\Service
  */
-class CacheService
+final class CacheService
 {
-    /**
-     * @var CacheInterface
-     */
-    private $cache;
+    private CacheInterface $cache;
 
-    private $cacheDir;
+    private string $cacheDir;
 
-    /**
-     * CacheService constructor.
-     * @param CacheInterface $cache
-     * @param ParameterBagInterface $parameterBag
-     */
     public function __construct(CacheInterface $cache, ParameterBagInterface $parameterBag)
     {
         $this->cache = $cache;
         $this->cacheDir = $parameterBag->get('kernel.cache_dir');
     }
 
-
-    /**
-     * @param string $key
-     * @return ItemInterface
-     */
     public function getItem(string $key): ItemInterface
     {
         return $this->cache->getItem($key);
     }
 
-    /**
-     * @param ItemInterface $item
-     * @param int $ttl
-     * @param $value
-     * @return bool
-     */
     public function set(ItemInterface $item, int $ttl, $value): bool
     {
         $item->expiresAfter($ttl);
@@ -57,20 +40,13 @@ class CacheService
         return $this->cache->save($item);
     }
 
-    /**
-     * @param ItemInterface $item
-     * @return mixed
-     */
     public function get(ItemInterface $item)
     {
         return $item->get();
     }
 
-
     /**
-     * @param string $key
-     * @return bool
-     * @throws \Psr\Cache\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function delete(string $key): bool
     {
@@ -88,7 +64,7 @@ class CacheService
         return true;
     }
 
-    public function clearFilesystemCache()
+    public function clearFilesystemCache(): void
     {
         $fs = new Filesystem();
         $fs->remove($this->cacheDir);

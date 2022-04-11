@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 
 namespace App\Service;
 
@@ -11,21 +13,14 @@ use App\Repository\ImageRepository;
  * Class ImageSortableService
  * @package App\Service
  */
-class ImageSortableService
+final class ImageSortableService
 {
-
     public const CACHE_KEY = 'sorted_image_v1';
     private const CACHE_TTL = 1800; // 30 minutes
 
-    /**
-     * @var ImageRepository
-     */
-    private $imageRepository;
+    private ImageRepository $imageRepository;
 
-    /**
-     * @var CacheService
-     */
-    private $cacheService;
+    private CacheService $cacheService;
 
     /**
      * ImageSortableService constructor.
@@ -38,10 +33,6 @@ class ImageSortableService
         $this->cacheService = $cacheService;
     }
 
-
-    /**
-     * @return array
-     */
     public function getSortedImages(): array
     {
         $images = $this->imageRepository->findByActive();
@@ -53,7 +44,6 @@ class ImageSortableService
 
         return $images;
     }
-
 
     private function sortByWidthAndWage(array $images): array
     {
@@ -80,10 +70,6 @@ class ImageSortableService
         return $result;
     }
 
-    /**
-     * @param array $images
-     * @return array
-     */
     private function sortImagesByWidth(array $images): array
     {
         $result = [];
@@ -118,28 +104,25 @@ class ImageSortableService
         return $images;
     }
 
-    function comparison(Image $a, Image $b) {
-        if ($a->getWeight() == $b->getWeight()) {
+    function comparison(Image $a, Image $b): int
+    {
+        if ($a->getWeight() === $b->getWeight()) {
             return 0;
         }
         return ($a->getWeight() < $b->getWeight()) ? -1 : 1;
     }
 
-    /**
-     * @param array $images
-     * @return array
-     */
     private function splitValueByWidth(array $images): array
     {
         $splits = [];
         foreach (ImageRepository::$widths as $width) {
 
-            $splits[$width] = array_filter($images, function ($value) use ($width) {
+            $splits[$width] = array_filter($images, static function ($value) use ($width) {
                 if (!($value instanceof Image)) {
                     return false;
                 }
 
-                return ($value->getWidth() == $width);
+                return ($value->getWidth() === $width);
             });
 
         }

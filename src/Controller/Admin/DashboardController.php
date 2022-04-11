@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Admin;
 
 use App\Entity\Image;
@@ -10,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -31,19 +34,17 @@ class DashboardController extends AbstractDashboardController
         ]);
     }
 
-    /**
-     * @return Dashboard
-     */
     public function configureDashboard(): Dashboard
     {
         $user = $this->getUser();
+        if ($user === null) {
+            throw new NotFoundHttpException('Not found user');
+        }
+
         return Dashboard::new()
             ->setTitle($user->getUsername());
     }
 
-    /**
-     * @return iterable
-     */
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
