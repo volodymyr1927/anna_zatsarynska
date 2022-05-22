@@ -14,6 +14,7 @@ class MenuItemsFixture extends Fixture
         $instagramItem->setItemName('Instagram');
         $instagramItem->setItemLink('https://instagram.com/ann_zatsarinskaya?igshid=YmMyMTA2M2Y=');
         $instagramItem->setActive(1);
+        $instagramItem->setItemOrder(3);
         $instagramItem->setCreatedAt(new \DateTime());
         $instagramItem->setUpdatedAt(new \DateTime());
         $manager->persist($instagramItem);
@@ -23,6 +24,7 @@ class MenuItemsFixture extends Fixture
         $price->setItemName('Price');
         $price->setItemLink('{{ path("price") }}');
         $price->setActive(1);
+        $price->setItemOrder(2);
         $price->setCreatedAt(new \DateTime());
         $price->setUpdatedAt(new \DateTime());
         $manager->persist($price);
@@ -32,6 +34,7 @@ class MenuItemsFixture extends Fixture
         $aboutMe->setItemName('About Me');
         $aboutMe->setItemLink('{{ path("about-me") }}');
         $aboutMe->setActive(1);
+        $aboutMe->setItemOrder(1);
         $aboutMe->setCreatedAt(new \DateTime());
         $aboutMe->setUpdatedAt(new \DateTime());
         $manager->persist($aboutMe);

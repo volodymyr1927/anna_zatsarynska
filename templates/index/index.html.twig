@@ -11,16 +11,15 @@
 
                 <div id="banner-wrapper">
                 <div id="header">
+                    {% for menu_item in menu_items %}
                     <div>
                         <p>
-                            <a href="https://www.instagram.com/anna__zatsarinskaya/" target="_blank">Instagram</a>
+                            {% autoescape %}
+                            <a href="{{ menu_item.itemLink }}">{{ menu_item.itemName }}</a>
+                            {% endautoescape %}
                         </p>
                     </div>
-                    <div>
-                        <p>
-                            <a href="{{ path("price") }}">Price</a>
-                        </p>
-                    </div>
+                    {% endfor %}
                 </div>
 
                 <div class="inner">

@@ -36,6 +36,11 @@ use Doctrine\ORM\Mapping as ORM;
     private int $active;
 
     /**
+     * @ORM\Column(name="item_order", type="integer", nullable=false, options={"default"=0})
+     */
+    private int $itemOrder;
+
+    /**
      * @ORM\Column(name="created_at", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
      */
     private DateTime $createdAt;
@@ -83,6 +88,16 @@ use Doctrine\ORM\Mapping as ORM;
     public function setActive(int $active): void
     {
         $this->active = $active;
+    }
+
+    public function getItemOrder(): int
+    {
+        return $this->itemOrder;
+    }
+
+    public function setItemOrder(int $item_order): void
+    {
+        $this->itemOrder = $item_order;
     }
 
     public function getCreatedAt(): DateTime

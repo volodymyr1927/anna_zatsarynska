@@ -1,11 +1,15 @@
-{% extends('@EasyAdmin/welcome.html.twig') %}
+{% extends('@EasyAdmin/page/content.html.twig') %}
 
 {%  block page_title %}
     Welcome to Admin Panel
 {% endblock %}
 
 {% block page_content %}
-    <ul>
-        <li><a class="btn btn-danger" href="{{ path('cacheClear') }}">Cache clear</a></li>
-    </ul>
+    <table class="table table-responsive-md table-borderless text-capitalize h4">
+        <tr>
+            <td class="fa fa-bitbucket"> Clear cache </td>
+            <td><a class="btn btn-danger" href="{{ path('cacheClear') }}">Clear cache</a></td>
+        </tr>
+
+    </table>
 {% endblock %}
