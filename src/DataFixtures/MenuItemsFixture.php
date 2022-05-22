@@ -21,8 +21,8 @@ class MenuItemsFixture extends Fixture
         $manager->flush();
 
         $price = new MenuItems();
-        $price->setItemName('Price');
-        $price->setItemLink('{{ path("price") }}');
+        $price->setItemName('For Clients');
+        $price->setItemLink('for-clients');
         $price->setActive(1);
         $price->setItemOrder(2);
         $price->setCreatedAt(new \DateTime());
@@ -32,7 +32,7 @@ class MenuItemsFixture extends Fixture
 
         $aboutMe = new MenuItems();
         $aboutMe->setItemName('About Me');
-        $aboutMe->setItemLink('{{ path("about-me") }}');
+        $aboutMe->setItemLink('about-me');
         $aboutMe->setActive(1);
         $aboutMe->setItemOrder(1);
         $aboutMe->setCreatedAt(new \DateTime());

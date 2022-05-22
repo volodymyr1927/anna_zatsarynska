@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class PriceController
  * @package App\Controller
  */
-final class PriceController extends AbstractController
+final class ForClientsController extends AbstractController
 {
     private PriceRepository $priceRepository;
 
@@ -23,13 +23,13 @@ final class PriceController extends AbstractController
     }
 
     /**
-     * @Route("/price", name="price")
+     * @Route("/for-clients", name="for-clients")
      */
     public function index(): Response
     {
         $prices = $this->priceRepository->findByActive();
 
-        return $this->render('price/index.html.twig', [
+        return $this->render('for-clients/index.html.twig', [
             'prices' => $prices
         ]);
     }

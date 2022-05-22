@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600");
 
 
+html {
+    scroll-behavior: smooth;
+}
 /* Reset */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, output, ruby, section, summary, time, mark, audio, video {
@@ -48,6 +51,43 @@ body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.top-of-site-link[data-visible=true] {
+    opacity: 1;
+    visibility: visible;
+}
+
+.top-of-site-link {
+    visibility: hidden;
+    opacity: 0;
+    transition: .2s;
+    position: fixed;
+    bottom: 1.2rem;
+    right: 1.5rem;
+    z-index: 15;
+}
+
+.screen-reader-text {
+    clip: rect(1px,1px,1px,1px);
+    word-wrap: normal!important;
+    border: 0;
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+.screen-reader, .screen-reader-text {
+    position: absolute!important;
+    clip: rect(1px,1px,1px,1px);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
 @media screen and (max-width: 480px) {
