@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=PriceRepository::class)
  */
-final class Price
+class Price
 {
     /**
      * @ORM\Id

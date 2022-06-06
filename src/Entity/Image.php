@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @ORM\Table(name="image")
  */
-final class Image
+class Image
 {
     /**
      * @ORM\Id

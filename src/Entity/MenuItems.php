@@ -11,7 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="menu_items")
  *
- */final class MenuItems
+ */
+class MenuItems
 {
     /**
      * @ORM\Id
