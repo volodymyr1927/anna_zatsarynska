@@ -37,6 +37,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureDashboard(): Dashboard
     {
+        /** @var User|null $user */
         $user = $this->getUser();
         if ($user === null) {
             throw new NotFoundHttpException('Not found user');
