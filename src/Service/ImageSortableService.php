@@ -5,7 +5,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-
 use App\Entity\Image;
 use App\Repository\ImageRepository;
 
@@ -116,13 +115,8 @@ final class ImageSortableService
     {
         $splits = [];
         foreach (ImageRepository::$widths as $width) {
-
-            $splits[$width] = array_filter($images, static function ($value) use ($width) {
-                if (!($value instanceof Image)) {
-                    return false;
-                }
-
-                return ($value->getWidth() === $width);
+            $splits[$width] = array_filter($images, static function (Image $value) use ($width) {
+                return ((int) $value->getWidth() === (int) $width);
             });
 
         }

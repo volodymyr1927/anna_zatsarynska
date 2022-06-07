@@ -50,7 +50,7 @@ class Image
     /**
      * @ORM\Column(name="description", type="string", nullable=true, length=255, options={"default"=""})
      */
-    private string $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(name="created_at", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
@@ -118,7 +118,7 @@ class Image
         $this->weight = $weight;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
