@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<ruleset name="AirSlate Document">
+    <!--
+        The name attribute of the ruleset tag is displayed
+        when running PHP_CodeSniffer with the -v command line
+        argument. The description tag below is not displayed anywhere
+        except in this file, so it can contain information for
+        developers who may change this file in the future.
+    -->
+    <description>AirSlate Coding Standards</description>
+
+    <exclude-pattern>/modules/Document/Commands/CommandUpdateFilesStorage.php$</exclude-pattern>
+    <exclude-pattern>/modules/Search/ServiceProviders/ConsoleCommandsServiceProvider.php$</exclude-pattern>
+
+    <exclude-pattern>/modules/Certificates/Migrations*\.(php)$</exclude-pattern>
+    <exclude-pattern>/modules/Comments/Migrations*\.(php)$</exclude-pattern>
+    <exclude-pattern>/modules/Core/Migrations*\.(php)$</exclude-pattern>
+    <exclude-pattern>/modules/Document/Migrations*\.(php)$</exclude-pattern>
+    <exclude-pattern>/modules/DocumentGeneration/Migrations*\.(php)$</exclude-pattern>
+    <exclude-pattern>/modules/Editor/Migrations*\.(php)$</exclude-pattern>
+    <exclude-pattern>/modules/Files/Migrations*\.(php)$</exclude-pattern>
+    <exclude-pattern>/modules/StorageFiles/Migrations*\.(php)$</exclude-pattern>
+
+    <exclude-pattern>/modules/Files/Policy/ContentTypePolicy.php$</exclude-pattern>
+
+    <!-- Show sniff codes in all reports -->
+    <arg value="s"/>
+
+    <!-- Use PSR-12 as a base -->
+    <rule ref="PSR12"/>
+
+    <!--
+        If no files or directories are specified on the command line
+        your custom standard can specify what files should be checked
+        instead.
+        Note that specifying any file or directory path
+        on the command line will ignore all file tags.
+    -->
+    <file>./modules</file>
+    <file>./tests</file>
+
+</ruleset>
