@@ -33,5 +33,4 @@ final class ForClientsController extends AbstractController
             'prices' => $prices
         ]);
     }
-
 }

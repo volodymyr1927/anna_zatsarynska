@@ -19,8 +19,7 @@ final class MenuItemsService
     public function __construct(
         MenuItemsRepository $menuItemsRepository,
         CacheService $cacheService
-    )
-    {
+    ) {
         $this->menuItemsRepository = $menuItemsRepository;
         $this->cacheService = $cacheService;
     }
@@ -32,7 +31,6 @@ final class MenuItemsService
     {
         $item = $this->cacheService->getItem(self::CACHE_KEY);
         if ($result = $this->cacheService->get($item)) {
-
             return $result;
         }
 
@@ -41,10 +39,10 @@ final class MenuItemsService
             ['itemOrder' => 'ASC']
         );
 
-       if ($result !== []) {
-           $this->cacheService->set($item, self::TTL, $result);
-       }
+        if ($result !== []) {
+            $this->cacheService->set($item, self::TTL, $result);
+        }
 
-       return $result;
+        return $result;
     }
 }

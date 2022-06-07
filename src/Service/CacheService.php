@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Service;
 
-
 use Psr\Cache\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Filesystem\Filesystem;
@@ -50,7 +49,7 @@ final class CacheService
      */
     public function delete(string $key): bool
     {
-       return $this->cache->delete($key);
+        return $this->cache->delete($key);
     }
 
     public function cacheClearAndWarmup(): bool

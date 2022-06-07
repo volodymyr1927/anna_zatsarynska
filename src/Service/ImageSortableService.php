@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace App\Service;
 
 use App\Entity\Image;
@@ -37,7 +36,6 @@ final class ImageSortableService
         $images = $this->imageRepository->findByActive();
 
         if (!empty($images)) {
-
             return $this->sortByWidthAndWage($images);
         }
 
@@ -48,19 +46,16 @@ final class ImageSortableService
     {
         $item = $this->cacheService->getItem(self::CACHE_KEY);
         if ($result = $this->cacheService->get($item)) {
-
             return $result;
         }
 
         $result = $this->sortImagesByWidth($images);
         if (empty($result)) {
-
             return  [];
         }
 
         $result = $this->sortImagesByWage($result);
         if (empty($result)) {
-
             return  [];
         }
 
@@ -98,7 +93,7 @@ final class ImageSortableService
 
     private function sortImagesByWage(array $images): array
     {
-        uasort($images,[$this,'comparison']);
+        uasort($images, [$this,'comparison']);
 
         return $images;
     }
@@ -118,7 +113,6 @@ final class ImageSortableService
             $splits[$width] = array_filter($images, static function (Image $value) use ($width) {
                 return ((int) $value->getWidth() === (int) $width);
             });
-
         }
 
         return $splits;

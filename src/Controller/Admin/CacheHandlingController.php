@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
-
 use App\Service\CacheService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use \Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class CacheHandlingController
@@ -34,6 +33,6 @@ final class CacheHandlingController extends AbstractController
 
         $this->cacheService->cacheClearAndWarmup();
 
-       return $this->redirectToRoute("admin");
+        return $this->redirectToRoute("admin");
     }
 }

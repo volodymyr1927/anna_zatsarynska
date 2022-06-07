@@ -37,7 +37,7 @@ final class PriceCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if ( !($entityInstance instanceof Price) ) {
+        if (!($entityInstance instanceof Price)) {
             throw new RuntimeException('Wrong entity type');
         }
 

@@ -13,13 +13,13 @@ class UserFixtures extends Fixture
 
     public function __construct(UserPasswordEncoderInterface $encoder)
     {
-       $this->encoder = $encoder;
+        $this->encoder = $encoder;
     }
 
     public function load(ObjectManager $manager): void
     {
         $user = new User();
-        $user->setPassword($this->encoder->encodePassword($user,'12qwaszx'));
+        $user->setPassword($this->encoder->encodePassword($user, '12qwaszx'));
         $user->setEmail('voloshyn1927@gmail.com');
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);

@@ -42,21 +42,21 @@ final class ImageCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-       $imageField = ImageField::new('image','Image');
-       $imageField->setUploadDir(ImageRepository::UPLOAD_DIR);
-       $imageField->setBasePath(ImageRepository::BASE_PATH);
-       $imageField->setUploadedFileNamePattern(function(UploadedFile $file) {
+        $imageField = ImageField::new('image', 'Image');
+        $imageField->setUploadDir(ImageRepository::UPLOAD_DIR);
+        $imageField->setBasePath(ImageRepository::BASE_PATH);
+        $imageField->setUploadedFileNamePattern(function (UploadedFile $file) {
 
-         return sprintf(
-             'upload_%d_%s.%s',
-             random_int(1, 999),
-             $file->getFilename(),
-             $file->guessExtension()
-         );
-       });
-       $imageField->setRequired(false);
+            return sprintf(
+                'upload_%d_%s.%s',
+                random_int(1, 999),
+                $file->getFilename(),
+                $file->guessExtension()
+            );
+        });
+        $imageField->setRequired(false);
 
-        $widthField = ChoiceField::new('width','Width');
+        $widthField = ChoiceField::new('width', 'Width');
         $widthField->setChoices(['50' => '50', '100' => '100']);
         $widthField->setRequired(true);
 
@@ -80,7 +80,7 @@ final class ImageCrudController extends AbstractCrudController
      */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        if ( !($entityInstance instanceof Image) ) {
+        if (!($entityInstance instanceof Image)) {
             throw new RuntimeException('Wrong entity type');
         }
         $entityInstance->setNameCrc32(crc32($entityInstance->getImage()));
