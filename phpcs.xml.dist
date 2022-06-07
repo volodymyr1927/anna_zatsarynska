@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<ruleset name="AirSlate Document">
+<ruleset name="Document">
     <!--
         The name attribute of the ruleset tag is displayed
         when running PHP_CodeSniffer with the -v command line
@@ -8,21 +8,7 @@
         except in this file, so it can contain information for
         developers who may change this file in the future.
     -->
-    <description>AirSlate Coding Standards</description>
-
-    <exclude-pattern>/modules/Document/Commands/CommandUpdateFilesStorage.php$</exclude-pattern>
-    <exclude-pattern>/modules/Search/ServiceProviders/ConsoleCommandsServiceProvider.php$</exclude-pattern>
-
-    <exclude-pattern>/modules/Certificates/Migrations*\.(php)$</exclude-pattern>
-    <exclude-pattern>/modules/Comments/Migrations*\.(php)$</exclude-pattern>
-    <exclude-pattern>/modules/Core/Migrations*\.(php)$</exclude-pattern>
-    <exclude-pattern>/modules/Document/Migrations*\.(php)$</exclude-pattern>
-    <exclude-pattern>/modules/DocumentGeneration/Migrations*\.(php)$</exclude-pattern>
-    <exclude-pattern>/modules/Editor/Migrations*\.(php)$</exclude-pattern>
-    <exclude-pattern>/modules/Files/Migrations*\.(php)$</exclude-pattern>
-    <exclude-pattern>/modules/StorageFiles/Migrations*\.(php)$</exclude-pattern>
-
-    <exclude-pattern>/modules/Files/Policy/ContentTypePolicy.php$</exclude-pattern>
+    <description>Coding Standards</description>
 
     <!-- Show sniff codes in all reports -->
     <arg value="s"/>
@@ -37,7 +23,6 @@
         Note that specifying any file or directory path
         on the command line will ignore all file tags.
     -->
-    <file>./modules</file>
-    <file>./tests</file>
+    <file>./src</file>
 
 </ruleset>
