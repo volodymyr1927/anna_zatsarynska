@@ -831,6 +831,14 @@ body.is-loading #banner > .inner {
     transform: translateY(1em);
 }
 
+body.is-loading #about-me-banner > .inner {
+    opacity: 0;
+    -moz-transform: translateY(1em);
+    -webkit-transform: translateY(1em);
+    -ms-transform: translateY(1em);
+    transform: translateY(1em);
+}
+
 #banner {
     display: -ms-flexbox;
     -ms-flex-pack: center;
@@ -856,6 +864,35 @@ body.is-loading #banner > .inner {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center 20%;
+    text-align: center;
+    color: #FFF;
+}
+
+#about-me-banner {
+    display: -ms-flexbox;
+    -ms-flex-pack: center;
+    -ms-flex-align: center;
+    padding: 8em 0 6em 0;
+    -moz-align-items: center;
+    -webkit-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    -moz-justify-content: center;
+    -webkit-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    min-height: 80vh;
+    position: relative;
+    background: #000;
+    background-image: url(../../public/banner/about-me.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center 50%;
     text-align: center;
     color: #FFF;
 }
@@ -898,7 +935,32 @@ body.is-loading #banner > .inner {
     padding: 0 2em;
 }
 
+#about-me-banner .inner {
+    -moz-transform: none;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    -moz-transition: opacity 1s ease, transform 1s ease;
+    -webkit-transition: opacity 1s ease, transform 1s ease;
+    -ms-transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s ease, transform 1s ease;
+    position: relative;
+    /*margin: 35vh 0;*/
+    flex: 1 1 auto;
+    opacity: 1;
+    z-index: 3;
+    padding: 0 2em;
+}
+
 #banner h1 {
+    font-size: 4em;
+    line-height: 1em;
+    margin: 0 0 0.5em 0;
+    padding: 0;
+    color: #FFF;
+}
+
+#about-me-banner h1 {
     font-size: 4em;
     line-height: 1em;
     margin: 0 0 0.5em 0;
@@ -911,7 +973,17 @@ body.is-loading #banner > .inner {
     margin-bottom: 1.75em;
 }
 
+#about-me-banner p {
+    font-size: 1.5em;
+    margin-bottom: 1.75em;
+}
+
 #banner a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+#about-me-banner a {
     color: #FFF;
     text-decoration: none;
 }
@@ -922,11 +994,14 @@ body.is-loading #banner > .inner {
         font-size: 3.5em;
     }
 
+    #about-me-banner h1 {
+        font-size: 3.5em;
+    }
 }
 
 @media screen and (max-width: 736px) {
 
-    #banner {
+    #banner, #about-me-banner {
         min-height: 10vh;
         background-attachment: scroll;
         padding: 1em 0 0 0;
@@ -936,7 +1011,15 @@ body.is-loading #banner > .inner {
         padding: 0 !important;
     }
 
+    #about-me-header div p {
+        padding: 0 !important;
+    }
+
     #banner .inner {
+        margin: 14vh 0;
+    }
+
+    #about-me-banner .inner {
         margin: 14vh 0;
     }
 
@@ -944,7 +1027,15 @@ body.is-loading #banner > .inner {
         font-size: 1.5em;
     }
 
+    #about-me-banner h1 {
+        font-size: 1.5em;
+    }
+
     #banner p {
+        font-size: 0.75em;
+    }
+
+    #about-me-banner p {
         font-size: 0.75em;
     }
 
@@ -952,6 +1043,9 @@ body.is-loading #banner > .inner {
         font-size: 0.75em;
     }
 
+    #about-me-banner a {
+        font-size: 0.75em;
+    }
 }
 
 
@@ -967,9 +1061,23 @@ body.is-loading #banner > .inner {
     background: #f1f1f1;
 }
 
+#main-about-me {
+    width: 100%;
+    background: #f1f1f1;
+}
+
 /* Header */
 
 #header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex: 1 1 auto;
+    width: 100%;
+    text-decoration: none;
+}
+
+#about-me-header {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -984,7 +1092,19 @@ body.is-loading #banner > .inner {
     padding: 0;
 }
 
+#about-me-header div {
+    width: 100%;
+    z-index: 3;
+    padding: 0;
+}
+
 #header div p {
+    padding: 1vh 0 1vh 0;
+    margin: 0;
+    font-size: 1.5em;
+}
+
+#about-me-header div p {
     padding: 1vh 0 1vh 0;
     margin: 0;
     font-size: 1.5em;
@@ -995,10 +1115,23 @@ body.is-loading #banner > .inner {
     color: #878f97;
 }
 
+#about-me-header div a:hover {
+    text-decoration: none;
+    color: #878f97;
+}
+
 
 /* Banner wrapper */
 
 #banner-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+#about-me-banner-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -1073,8 +1206,9 @@ body.is-loading #banner > .inner {
 }
 
 #head-link h2 {
-    padding: 3vh;
+    padding: 1vh;
 }
+
 
 @media screen and (max-width: 736px) {
     #head-link {
@@ -1101,12 +1235,9 @@ body.is-loading #banner > .inner {
 
 }
 
-#price-content {
+#price-content, #about-me-content {
     height: 85%;
     font-size: 1.25em;
-}
-
-#price-content {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -1115,7 +1246,7 @@ body.is-loading #banner > .inner {
 }
 
 
-#price-content-wrapper {
+#price-content-wrapper, #about-me-content-wrapper {
     margin: 4vh;
     border: solid rgba(39,40,44,.2) 0.1vh;
     padding: 2vh;
@@ -1128,13 +1259,23 @@ body.is-loading #banner > .inner {
     color: #878f97;
 }
 
+#about-me-header-wrapper div a:hover {
+    text-decoration: none;
+    color: #878f97;
+}
+
 #price-content-wrapper #content ul {
     list-style-type: square;
 }
 
+#about-me-content-wrapper div a:hover {
+    text-decoration: none;
+    color: #878f97;
+}
+
 @media screen and (max-width: 736px) {
 
-    #price-content {
+    #price-content, #about-me-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1142,7 +1283,7 @@ body.is-loading #banner > .inner {
         height: 90%;
     }
 
-    #price-content-wrapper {
+    #price-content-wrapper, #about-me-content-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1152,7 +1293,7 @@ body.is-loading #banner > .inner {
 
 @media screen and (max-width: 980px) {
 
-    #price-content {
+    #price-content, #about-me-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1161,7 +1302,7 @@ body.is-loading #banner > .inner {
         height: 90%;
     }
 
-    #price-content-wrapper {
+    #price-content-wrapper, #about-me-content-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: center;
