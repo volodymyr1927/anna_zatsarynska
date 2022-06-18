@@ -25,7 +25,11 @@
 
             <!-- Content -->
             <section id="about-me-content">
-
+                <div id="about-me-text-wrapper">
+                    <p>
+                        {{ about_my_work.content |raw }}
+                    </p>
+                </div>
                 <a href="#top" class="top-of-site-link" data-visible="true">
                     <span class="screen-reader-text">Back to Top</span>
                     <svg width="32" height="32" viewBox="0 0 100 100">

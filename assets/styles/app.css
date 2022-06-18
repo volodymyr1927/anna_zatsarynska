@@ -3,6 +3,9 @@
 
 html {
     scroll-behavior: smooth;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 13pt;
+    font-style: normal;
 }
 /* Reset */
 
@@ -10,7 +13,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     font: inherit;
     vertical-align: baseline;
 }
@@ -32,7 +34,6 @@ blockquote, q {
 }
 
 blockquote:before, blockquote:after, q:before, q:after {
-    content: '';
     content: none;
 }
 
@@ -159,7 +160,6 @@ body {
 }
 
 body, input, select, textarea {
-    font-family: "Nunito Sans", Arial, Helvetica, sans-serif;
     font-size: 13pt;
     font-weight: 300;
     line-height: 1.65;
@@ -786,7 +786,7 @@ table.alt tfoot {
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
     -moz-justify-content: -moz-flex-start;
-    -webkit-justify-content: -webkit-flex-start;
+    -webkit-justify-content: flex-start;
     -ms-justify-content: -ms-flex-start;
     justify-content: flex-start;
 }
@@ -1000,7 +1000,6 @@ body.is-loading #about-me-banner > .inner {
 }
 
 @media screen and (max-width: 736px) {
-
     #banner, #about-me-banner {
         min-height: 10vh;
         background-attachment: scroll;
@@ -1063,6 +1062,7 @@ body.is-loading #about-me-banner > .inner {
 
 #main-about-me {
     width: 100%;
+    height: 40%;
     background: #f1f1f1;
 }
 
@@ -1206,9 +1206,8 @@ body.is-loading #about-me-banner > .inner {
 }
 
 #head-link h2 {
-    padding: 1vh;
+    margin: 1vh;
 }
-
 
 @media screen and (max-width: 736px) {
     #head-link {
@@ -1235,7 +1234,7 @@ body.is-loading #about-me-banner > .inner {
 
 }
 
-#price-content, #about-me-content {
+#price-content {
     height: 85%;
     font-size: 1.25em;
     display: flex;
@@ -1245,14 +1244,29 @@ body.is-loading #about-me-banner > .inner {
     margin-bottom: 4vh;
 }
 
+#about-me-content {
+    height: 85%;
+    font-size: 1.25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    flex-wrap: wrap;
+    margin-bottom: 4vh;
+}
 
-#price-content-wrapper, #about-me-content-wrapper {
+#price-content-wrapper {
     margin: 4vh;
     border: solid rgba(39,40,44,.2) 0.1vh;
     padding: 2vh;
     flex-basis: 27%;
 }
 
+#about-me-content-wrapper {
+    margin: 4vh;
+    border: solid rgba(39,40,44,.2) 0.1vh;
+    padding: 2vh;
+    flex-basis: 27%;
+}
 
 #price-header-wrapper div a:hover {
     text-decoration: none;
@@ -1271,6 +1285,22 @@ body.is-loading #about-me-banner > .inner {
 #about-me-content-wrapper div a:hover {
     text-decoration: none;
     color: #878f97;
+}
+
+#about-me-text-wrapper {
+    margin: 1em;
+    padding: 1em;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+#about-me-text-wrapper p {
+    letter-spacing: -0.003em;
+    line-height: 32px;
+    font-size: 20px;
+    margin: 0;
+    color: rgba(41, 41, 41, 1);
+    text-align: center;
 }
 
 @media screen and (max-width: 736px) {

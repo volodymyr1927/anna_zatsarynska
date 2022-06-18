@@ -25,7 +25,7 @@ class AboutMyWork
     private ?string $title = null;
 
     /**
-     * @ORM\Column(name="content", type="blob", nullable=false)
+     * @ORM\Column(name="content", type="string", nullable=false)
      */
     private string $content;
 
