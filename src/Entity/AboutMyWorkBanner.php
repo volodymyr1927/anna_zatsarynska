@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use DateTime;
@@ -7,27 +9,23 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\AboutMyWorkRepository")
- * @ORM\Table(name="about_my_work")
+ * @ORM\Table(name="about_my_work_banner")
  */
-class AboutMyWork
+final class AboutMyWorkBanner
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(name="id", type="integer", unique=true, nullable=false, options={"unsigned"=true})
      */
     private int $id;
-
-
     /**
-     * @ORM\Column(name="content", type="string", nullable=false)
+     * @ORM\Column(name="path", type="string", nullable="false", length=255)
      */
-    private string $content;
-
+    private string $path;
 
     /**
-     * @ORM\Column(name="active", type="boolean", nullable=false)
+     * @ORM\Column(name="active", type="boolean", options={"default"="true"})
      */
     private bool $active = true;
 
@@ -51,14 +49,14 @@ class AboutMyWork
         $this->id = $id;
     }
 
-    public function getContent(): string
+    public function getPath(): string
     {
-        return $this->content;
+        return $this->path;
     }
 
-    public function setContent(string $content): void
+    public function setPath(string $path): void
     {
-        $this->content = $content;
+        $this->path = $path;
     }
 
     public function isActive(): bool

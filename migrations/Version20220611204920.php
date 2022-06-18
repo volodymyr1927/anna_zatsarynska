@@ -22,8 +22,6 @@ final class Version20220611204920 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE about_my_work (
                         id INT UNSIGNED AUTO_INCREMENT NOT NULL,
-                        title VARCHAR(255) DEFAULT NULL, 
-                        image VARCHAR(255) NOT NULL,
                         content LONGBLOB NOT NULL, 
                         active BOOLEAN NOT NULL DEFAULT true,
                         created_at DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL, 

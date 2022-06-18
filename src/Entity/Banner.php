@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
 use DateTime;
@@ -7,27 +9,24 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\AboutMyWorkRepository")
- * @ORM\Table(name="about_my_work")
+ * @ORM\Table(name="banner")
  */
-class AboutMyWork
+final class Banner
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\Column(name="id", type="integer", unique=true, nullable=false, options={"unsigned"=true})
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
      */
     private int $id;
 
-
     /**
-     * @ORM\Column(name="content", type="string", nullable=false)
+     * @ORM\Column(name="path", type="string", nullable="false")
      */
-    private string $content;
-
+    private string $path;
 
     /**
-     * @ORM\Column(name="active", type="boolean", nullable=false)
+     * @ORM\Column(name="active", type="boolean", nullable="false", options={"default"="true"})
      */
     private bool $active = true;
 
@@ -41,6 +40,7 @@ class AboutMyWork
      */
     private DateTime $updatedAt;
 
+
     public function getId(): int
     {
         return $this->id;
@@ -51,14 +51,19 @@ class AboutMyWork
         $this->id = $id;
     }
 
-    public function getContent(): string
+    public function getPath(): string
     {
-        return $this->content;
+        return $this->path;
     }
 
-    public function setContent(string $content): void
+    public function setPath(string $path): void
     {
-        $this->content = $content;
+        $this->path = $path;
+    }
+
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
     }
 
     public function isActive(): bool
@@ -69,11 +74,6 @@ class AboutMyWork
     public function setActive(bool $active): void
     {
         $this->active = $active;
-    }
-
-    public function getCreatedAt(): DateTime
-    {
-        return $this->createdAt;
     }
 
     public function setCreatedAt(DateTime $createdAt): void

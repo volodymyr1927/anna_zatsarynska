@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\BannerRepository;
+use App\Service\BannersService;
 use App\Service\ImageSortableService;
 use App\Service\MenuItemsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,16 +18,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class IndexController extends AbstractController
 {
-    private ImageSortableService $imageService;
-
-    private MenuItemsService $menuItemsService;
-
     public function __construct(
-        ImageSortableService $imageService,
-        MenuItemsService $menuItemsService
+        private ImageSortableService $imageService,
+        private MenuItemsService $menuItemsService,
+        private BannersService $bannersService
     ) {
-        $this->imageService = $imageService;
-        $this->menuItemsService = $menuItemsService;
     }
 
     /**
@@ -35,10 +32,12 @@ final class IndexController extends AbstractController
     {
         $thumbs = $this->imageService->getSortedImages();
         $menuItems = $this->menuItemsService->getMenuItems();
+        $banner = $this->bannersService->getMainBanner();
 
         return $this->render('index/index.html.twig', [
             'thumbs' => $thumbs,
             'menu_items' => $menuItems,
+            'banner' => $banner,
         ]);
     }
 }

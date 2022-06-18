@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Entity\AboutMyWork;
+use App\Entity\AboutMyWorkBanner;
+use App\Entity\Banner;
 use App\Entity\Image;
 use App\Entity\MenuItems;
 use App\Entity\Price;
@@ -56,5 +58,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Price', 'fas fa-money-bill', Price::class);
         yield MenuItem::linkToCrud('Menu Items', 'fas fa-list-ol', MenuItems::class);
         yield MenuItem::linkToCrud('About Me', 'fas fa-flag', AboutMyWork::class);
+        yield MenuItem::linkToCrud('Main Banner', 'fas fa-image', Banner::class);
+        yield MenuItem::linkToCrud('About My Work Banner', 'fas fa-image', AboutMyWorkBanner::class);
     }
 }

@@ -859,7 +859,6 @@ body.is-loading #about-me-banner > .inner {
     min-height: 100vh;
     position: relative;
     background: #000;
-    background-image: url(../../public/banner/main.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -888,7 +887,6 @@ body.is-loading #about-me-banner > .inner {
     min-height: 80vh;
     position: relative;
     background: #000;
-    background-image: url(../../public/banner/about-me.jpg);
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;

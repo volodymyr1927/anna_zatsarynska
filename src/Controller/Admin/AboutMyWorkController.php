@@ -8,8 +8,6 @@ use App\Entity\AboutMyWork;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use RuntimeException;
 
@@ -23,11 +21,8 @@ final class AboutMyWorkController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            (TextField::new('title', 'Title'))->setRequired(false),
-            BooleanField::new('active', 'Active'),
-            TextEditorField::new('content', 'About Me Content'),
-            ImageField::new('image', 'Banner')
-                ->setUploadDir('/public/banner/')
+            BooleanField::new('active', 'Active')->setRequired(true),
+            TextField::new('content', 'About Me Content')->setRequired(true),
         ];
     }
 

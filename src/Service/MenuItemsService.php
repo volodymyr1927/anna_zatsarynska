@@ -12,16 +12,10 @@ final class MenuItemsService
     private const CACHE_KEY = 'menu_items';
     private const TTL = 3600;
 
-    private MenuItemsRepository $menuItemsRepository;
-
-    private CacheService $cacheService;
-
     public function __construct(
-        MenuItemsRepository $menuItemsRepository,
-        CacheService $cacheService
+        private MenuItemsRepository $menuItemsRepository,
+        private CacheService $cacheService
     ) {
-        $this->menuItemsRepository = $menuItemsRepository;
-        $this->cacheService = $cacheService;
     }
 
     /**

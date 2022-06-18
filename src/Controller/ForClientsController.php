@@ -4,22 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Repository\MenuItemsRepository;
 use App\Repository\PriceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Class PriceController
- * @package App\Controller
- */
 final class ForClientsController extends AbstractController
 {
-    private PriceRepository $priceRepository;
-
-    public function __construct(PriceRepository $priceRepository)
-    {
-        $this->priceRepository = $priceRepository;
+    public function __construct(
+        private PriceRepository $priceRepository,
+        private MenuItemsRepository $itemsRepository
+    ) {
     }
 
     /**
@@ -27,6 +24,17 @@ final class ForClientsController extends AbstractController
      */
     public function index(): Response
     {
+        $aboutMyWorkItem = $this->itemsRepository->findOneBy(
+            [
+                'active' => true,
+                'itemLink' => 'for-clients'
+            ]
+        );
+
+        if ($aboutMyWorkItem === null) {
+            throw new NotFoundHttpException('Page does not exist');
+        }
+
         $prices = $this->priceRepository->findByActive();
 
         return $this->render('for-clients/index.html.twig', [
