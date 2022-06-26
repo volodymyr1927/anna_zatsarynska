@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600");
 
-
 html {
     scroll-behavior: smooth;
     font-family: Georgia, "Times New Roman", Times, serif;
@@ -70,8 +69,8 @@ body {
 }
 
 .screen-reader-text {
-    clip: rect(1px,1px,1px,1px);
-    word-wrap: normal!important;
+    clip: rect(1px, 1px, 1px, 1px);
+    word-wrap: normal !important;
     border: 0;
     -webkit-clip-path: inset(50%);
     clip-path: inset(50%);
@@ -84,8 +83,8 @@ body {
 }
 
 .screen-reader, .screen-reader-text {
-    position: absolute!important;
-    clip: rect(1px,1px,1px,1px);
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
     width: 1px;
     height: 1px;
     overflow: hidden;
@@ -392,7 +391,7 @@ button, .button {
 button:hover,
 .button:hover {
     color: #FFF;
-    background: rgba(39,40,44,.2);
+    background: rgba(39, 40, 44, .2);
 }
 
 
@@ -858,11 +857,8 @@ body.is-loading #about-me-banner > .inner {
     justify-content: center;
     min-height: 100vh;
     position: relative;
-    background: #000;
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center 20%;
+    background: #000 url(../../public/banner/main.jpg) no-repeat fixed center 20%;
+    background-size: cover !important;
     text-align: center;
     color: #FFF;
 }
@@ -886,11 +882,8 @@ body.is-loading #about-me-banner > .inner {
     justify-content: center;
     min-height: 80vh;
     position: relative;
-    background: #000;
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center 50%;
+    background: #000 url(../../public/banner/about-me.jpg) no-repeat fixed center 50%;
+    background-size: cover !important;
     text-align: center;
     color: #FFF;
 }
@@ -943,7 +936,6 @@ body.is-loading #about-me-banner > .inner {
     -ms-transition: opacity 1s ease, transform 1s ease;
     transition: opacity 1s ease, transform 1s ease;
     position: relative;
-    /*margin: 35vh 0;*/
     flex: 1 1 auto;
     opacity: 1;
     z-index: 3;
@@ -1176,6 +1168,7 @@ body.is-loading #about-me-banner > .inner {
     height: auto;
     margin: .5% 0 .5% 4%;
 }
+
 .thumb-sm {
     width: 44% !important;
     height: auto;
@@ -1254,14 +1247,14 @@ body.is-loading #about-me-banner > .inner {
 
 #price-content-wrapper {
     margin: 4vh;
-    border: solid rgba(39,40,44,.2) 0.1vh;
+    border: solid rgba(39, 40, 44, .2) 0.1vh;
     padding: 2vh;
     flex-basis: 27%;
 }
 
 #about-me-content-wrapper {
     margin: 4vh;
-    border: solid rgba(39,40,44,.2) 0.1vh;
+    border: solid rgba(39, 40, 44, .2) 0.1vh;
     padding: 2vh;
     flex-basis: 27%;
 }

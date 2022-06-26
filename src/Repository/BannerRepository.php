@@ -29,4 +29,21 @@ final class BannerRepository extends ServiceEntityRepository
                 ['createdAt' => 'DESC']
             );
     }
+
+    /**
+     * @return Banner[]
+     */
+    public function getAllActiveBanners(): array
+    {
+        return $this
+            ->findBy(['active' => true]);
+    }
+
+    public function batchUpdate(Banner ...$banners): void
+    {
+        foreach ($banners as $banner) {
+            $this->getEntityManager()->persist($banner);
+        }
+        $this->getEntityManager()->flush();
+    }
 }

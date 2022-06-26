@@ -29,4 +29,21 @@ final class AboutMyWorkBannerRepository extends ServiceEntityRepository
                 ['createdAt' => 'DESC']
             );
     }
+
+    /**
+     * @return AboutMyWorkBanner[]
+     */
+    public function getAllActiveBanners(): array
+    {
+        return $this
+            ->findBy(['active' => true]);
+    }
+
+    public function batchUpdate(AboutMyWorkBanner ...$banners): void
+    {
+        foreach ($banners as $banner) {
+            $this->getEntityManager()->persist($banner);
+        }
+        $this->getEntityManager()->flush();
+    }
 }

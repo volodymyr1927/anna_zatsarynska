@@ -15,6 +15,7 @@
 /node_modules/
 /public/build/
 /public/images/
+/public/banner/
 npm-debug.log
 yarn-error.log
 /package-lock.json
